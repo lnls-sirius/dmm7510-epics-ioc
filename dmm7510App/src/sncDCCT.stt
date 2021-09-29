@@ -937,7 +937,6 @@ ss dcct_acquisition {
 
     state failure_test_acq_step_1 {
         entry {
-
             // allow TM index monitors to
             // be sent always (not only 
             // on change).
@@ -951,11 +950,19 @@ ss dcct_acquisition {
 
         when (efTestAndClear(tm_idx_mon_flg)){
             /* connection is ok, so it is a trigger problem */
-
             // send TM index monitors
             // only on change
             tm_idx_mon_mdel = MDEL_ON_CHANGE;
             pvPut(tm_idx_mon_mdel, SYNC);
+	    /* if TM is waiting for a software trigger
+	       send one, since last one could have been lost */
+	    if ((meas_trg_sts != 3 && tm_idx_mon == 4)
+	        || (meas_trg_sts == 3 && tm_idx_mon == 1)
+	        )
+	    {
+                soft_trg_cmd = 1;
+                pvPut(soft_trg_cmd, SYNC)
+	    }
 	    // set missing trigger status flag
 	    trg_is_missing_mon = 1;
 	    pvPut(trg_is_missing_mon, SYNC);
@@ -973,7 +980,6 @@ ss dcct_acquisition {
 
     state failure_test_acq_step_2 {
         entry {
-
             // allow TM index monitors to
             // be sent always (not only 
             // on change).
@@ -987,11 +993,19 @@ ss dcct_acquisition {
 
         when (efTestAndClear(tm_idx_mon_flg)){
             /* connection is ok, so it is a trigger problem */
-
             // send TM index monitors
             // only on change
             tm_idx_mon_mdel = MDEL_ON_CHANGE;
             pvPut(tm_idx_mon_mdel, SYNC);
+	    /* if TM is waiting for a software trigger
+	       send one, since last one could have been lost */
+	    if ((meas_trg_sts != 3 && tm_idx_mon == 4)
+	        || (meas_trg_sts == 3 && tm_idx_mon == 3)
+	        )
+            {
+                soft_trg_cmd = 1;
+                pvPut(soft_trg_cmd, SYNC);
+            }
             // set missing trigger status flag
             trg_is_missing_mon = 1;
             pvPut(trg_is_missing_mon, SYNC);
