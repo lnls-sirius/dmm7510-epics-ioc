@@ -245,6 +245,9 @@ sync get_shutdown_monitor get_shutdown_monitor_flg;
 int get_shutdown_monitor_proc;
 assign get_shutdown_monitor_proc to "{P}{R}GetHasShutDown.PROC";
 
+int trg_is_missing_mon;
+assign trg_is_missing_mon to "{P}{R}TrgIsMissing-Mon";
+
 %%//----------------------------------------
 %%//        Escaped C Code
 %%//----------------------------------------
@@ -745,6 +748,9 @@ ss dcct_acquisition {
             // update enbl status
             enbl_sts = 0;
             pvPut(enbl_sts, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
             // abort TM
             tm_abort_cmd = 1;
             pvPut(tm_abort_cmd, SYNC);
@@ -770,6 +776,9 @@ ss dcct_acquisition {
             // update enbl status
             enbl_sts = 0;
             pvPut(enbl_sts, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
             // abort TM
             tm_abort_cmd = 1;
             pvPut(tm_abort_cmd, SYNC);
@@ -797,6 +806,9 @@ ss dcct_acquisition {
             pvPut(soft_trg_cmd, SYNC);
             raw_buff_1_mon_proc = 1;
             pvPut(raw_buff_1_mon_proc, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
         } state acq_cycle_step_2
 
         when (tm_idx_mon == 3 && meas_trg_sts == 3
@@ -814,6 +826,9 @@ ss dcct_acquisition {
             pvPut(soft_trg_cmd, SYNC);
             raw_buff_1_mon_proc = 1;
             pvPut(raw_buff_1_mon_proc, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
         } state acq_cycle_step_2
     }
 
@@ -836,6 +851,9 @@ ss dcct_acquisition {
             // update enbl status
             enbl_sts = 0;
             pvPut(enbl_sts, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
             // abort TM
             tm_abort_cmd = 1;
             pvPut(tm_abort_cmd, SYNC);
@@ -861,6 +879,9 @@ ss dcct_acquisition {
             // update enbl status
             enbl_sts = 0;
             pvPut(enbl_sts, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
             // abort TM
             tm_abort_cmd = 1;
             pvPut(tm_abort_cmd, SYNC);
@@ -888,6 +909,9 @@ ss dcct_acquisition {
             pvPut(soft_trg_cmd, SYNC);
             raw_buff_1_mon_proc = 1;
             pvPut(raw_buff_1_mon_proc, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
         } state acq_cycle_step_1
 
         when (tm_idx_mon == 1 && meas_trg_sts == 3
@@ -905,6 +929,9 @@ ss dcct_acquisition {
             pvPut(soft_trg_cmd, SYNC);
             raw_buff_2_mon_proc = 1;
             pvPut(raw_buff_2_mon_proc, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
         } state acq_cycle_step_1
     }
 
@@ -929,6 +956,9 @@ ss dcct_acquisition {
             // only on change
             tm_idx_mon_mdel = MDEL_ON_CHANGE;
             pvPut(tm_idx_mon_mdel, SYNC);
+	    // set missing trigger status flag
+	    trg_is_missing_mon = 1;
+	    pvPut(trg_is_missing_mon, SYNC);
         } state acq_cycle_step_1
 
         when (delay(TIMEOUT_CONN_NOT_TRIG)){
@@ -962,6 +992,9 @@ ss dcct_acquisition {
             // only on change
             tm_idx_mon_mdel = MDEL_ON_CHANGE;
             pvPut(tm_idx_mon_mdel, SYNC);
+            // set missing trigger status flag
+            trg_is_missing_mon = 1;
+            pvPut(trg_is_missing_mon, SYNC);
         } state acq_cycle_step_2
 
         when (delay(TIMEOUT_CONN_NOT_TRIG)){
@@ -1026,6 +1059,9 @@ ss dcct_acquisition {
             // disable output trg
             strcpy(ex_out_stim_sel, "NONE");
             pvPut(ex_out_stim_sel, SYNC);
+	    // clear missing trigger status flag
+	    trg_is_missing_mon = 0;
+	    pvPut(trg_is_missing_mon, SYNC);
             // abort TM
             tm_abort_cmd = 1;
             pvPut(tm_abort_cmd, SYNC);
