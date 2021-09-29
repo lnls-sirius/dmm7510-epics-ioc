@@ -910,7 +910,7 @@ ss dcct_acquisition {
 
     state failure_test_acq_step_1 {
         entry {
-            LOG_MINOR("[%s%s] Acquisition timeout: checking connection\n", macValueGet("P"), macValueGet("R"));
+
             // allow TM index monitors to
             // be sent always (not only 
             // on change).
@@ -924,7 +924,7 @@ ss dcct_acquisition {
 
         when (efTestAndClear(tm_idx_mon_flg)){
             /* connection is ok, so it is a trigger problem */
-            LOG_MINOR("[%s%s] Acquisition timeout: connection OK. Trigger may be missing\n", macValueGet("P"), macValueGet("R"));
+
             // send TM index monitors
             // only on change
             tm_idx_mon_mdel = MDEL_ON_CHANGE;
@@ -943,7 +943,7 @@ ss dcct_acquisition {
 
     state failure_test_acq_step_2 {
         entry {
-            LOG_MINOR("[%s%s] Acquisition timeout: checking connection\n", macValueGet("P"), macValueGet("R"));
+
             // allow TM index monitors to
             // be sent always (not only 
             // on change).
@@ -957,7 +957,7 @@ ss dcct_acquisition {
 
         when (efTestAndClear(tm_idx_mon_flg)){
             /* connection is ok, so it is a trigger problem */
-            LOG_MINOR("[%s%s] Acquisition timeout: connection OK. Trigger may be missing\n", macValueGet("P"), macValueGet("R"));
+
             // send TM index monitors
             // only on change
             tm_idx_mon_mdel = MDEL_ON_CHANGE;
