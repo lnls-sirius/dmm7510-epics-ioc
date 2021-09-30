@@ -961,7 +961,7 @@ ss dcct_acquisition {
 	        )
 	    {
                 soft_trg_cmd = 1;
-                pvPut(soft_trg_cmd, SYNC)
+                pvPut(soft_trg_cmd, SYNC);
 	    }
 	    // set missing trigger status flag
 	    trg_is_missing_mon = 1;
