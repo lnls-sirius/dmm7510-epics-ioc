@@ -364,6 +364,15 @@ record(mbbi, "$(P)$(R)MeasTrg-Sts"){
   field(FRST, "None")
 }
 
+record(bo, "$(P)$(R)TrgIsMissing-Mon"){
+  # ------------------------------------
+  # This record is set by sncDCCT
+  # ------------------------------------
+  field(DESC, "Trigger is missing status")
+  field(ZNAM, "Ok")
+  field(ONAM, "Missing")
+}
+
 ###################################################
 # Measurement Enable | Both modes
 #

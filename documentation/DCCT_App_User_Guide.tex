@@ -425,6 +425,10 @@
 	    					Trigger source selection status.
 						\end{tabular} \\ \hline
 		% --- row ---
+		TrgIsMissing-Mon & ENUM: Ok, Missing & \begin{tabular}{@{}m{6cm}@{}}
+				      	  Trigger is missing status. If the acquisition is enabled, this PV indicates when the IOC reachs a time out while waiting for a trigger to the multimeter. More precisely, this status is the result of a time out before the multimeter sends a new measurement while no connection problem is detected by the IOC. When a new reading is successfully received by the IOC, this status goes to zero.
+					  \end{tabular} \\ \hline
+		% --- row ---
 		Range-Sel & ENUM: 20 A, 2 A, 200 mA, 20 mA & \begin{tabular}{@{}m{6cm}@{}}
 	    					DCCT range selection. The selected range must be large enough so that the current passing through the sensor does not exceed full scale range, in which case its magnetic cores may saturate.
 						\end{tabular} \\ \hline
