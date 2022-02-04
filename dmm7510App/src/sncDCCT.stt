@@ -902,7 +902,7 @@ ss dcct_acquisition {
             // update initial buffer position (for new values)
             idx_buff_1_mon = end_buff_1_mon - var_sample_cnt + 1;
             pvPut(idx_buff_1_mon, SYNC);
-            /* buffer 2 full:
+            /* buffer 1 full:
                send soft trg and
                fetch reading */
             soft_trg_cmd = 1;

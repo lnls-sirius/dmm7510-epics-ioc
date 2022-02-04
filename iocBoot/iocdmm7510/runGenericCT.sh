@@ -41,6 +41,10 @@ if [ -z "$DMM7510_TYPE" ]; then
 fi
 
 case ${DMM7510_TYPE} in
+    DCCT_FIXED_RANGE)
+        ST_CMD_FILE=stDCCTFixedRange.cmd
+        ;;
+
     DCCT)
         ST_CMD_FILE=stDCCT.cmd
         ;;

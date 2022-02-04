@@ -1341,15 +1341,14 @@ record(longin, "$(P)$(R)AvgFilterWind-RB"){
 #
 # ######################################
 
-# DCCT Range selection
-record(mbbo, "$(P)$(R)Range-Sel"){
-  field(DESC, "DCCT range")
-  field(ZRST, "20 A")
-  field(ONST, "2 A")
-  field(TWST, "200 mA")
-  field(THST, "20 mA")
-  field(FLNK, "$(P)$(R)ConvCalcGetMode")
-}
+# ######################################
+# DCCT Range selection record
+#
+# IMPLEMENTED ON A SEPARATE .DB!
+#  - dcct_range_variable.db
+#  or
+#  - dcct_range_fixed.db
+# ######################################
 
 record(calcout, "$(P)$(R)ConvCalcGetMode"){
   field(ASG, "Reserved")

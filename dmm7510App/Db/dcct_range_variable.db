@@ -1,0 +1,20 @@
+########################################################################
+# Current Measurement Range
+#
+# Desc: Measurement range selection.
+
+# ######################################
+# This record is used for IOCs that
+# provide variable range configuration
+# ######################################
+
+# DCCT Range selection
+record(mbbo, "$(P)$(R)Range-Sel"){
+  field(DESC, "DCCT range")
+  field(ZRST, "20 A")
+  field(ONST, "2 A")
+  field(TWST, "200 mA")
+  field(THST, "20 mA")
+  field(FLNK, "$(P)$(R)ConvCalcGetMode")
+}
+
