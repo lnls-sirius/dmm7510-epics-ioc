@@ -21,7 +21,7 @@ drvAsynIPPortConfigure("${PORT}", "${IPADDR}:${IPPORT} TCP",0,0,0)
 ## Load record instances
 dbLoadRecords("${TOP}/db/dmm7510.db", "P=${P}, R=${R}, PORT=${PORT}")
 dbLoadRecords("${TOP}/db/dcct.db", "P=${P}, R=${R}, Instrument=${P}${R}, MAX_NUM_READINGS=${MAX_NUM_READINGS}, PORT=${PORT}")
-dbLoadRecords("${TOP}/db/dcct_range_variable.db", "P=${P}, R=${R}")
+dbLoadRecords("${TOP}/db/dcct_range_fixed.db", "P=${P}, R=${R}")
 
 < save_restore.cmd
 

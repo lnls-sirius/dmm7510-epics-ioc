@@ -12,7 +12,7 @@ usage () {
     echo "  -R                  Configure value of \$(R) macro" >&2
     echo "  -i                  Configure IP address to connect to device" >&2
     echo "  -p                  Configure IP port number to connect to device" >&2
-    echo "  -d                  Configure DMM device type [DCCT|ICT|DMM]" >&2
+    echo "  -d                  Configure DMM device type [DCCT|DCCT_FIXED_RANGE|ICT|DMM]" >&2
     echo "  -l                  Configure IOC Log Server IP address to connect to" >&2
     echo "  -L                  Configure IOC Log Server port to connect to" >&2
 }
