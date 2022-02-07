@@ -18,3 +18,25 @@ record(mbbo, "$(P)$(R)Range-Sel"){
   field(FLNK, "$(P)$(R)ConvCalcGetMode")
 }
 
+########################################################################
+# DCCT Calibration Setting
+#
+# Desc: DCCT calibration signal enable.
+
+# ######################################
+# NPCT Pin mapping
+#
+# NPCT Calibration Enable = DigIO line 3
+#
+# ######################################
+
+# Enable/disable DCCT calibration signal
+record(mbbo, "$(P)$(R)Test-Sel"){
+  field(DESC, "DCCT calibration signal enable")
+  field(ZRST, "OFF")
+  field(ONST, "ON")
+  field(UNSV, "MAJOR")
+  field(IVOA, "Don't drive outputs")
+  field(FLNK, "$(P)$(R)TestCalc")
+}
+
