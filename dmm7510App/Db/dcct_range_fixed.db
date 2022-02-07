@@ -32,3 +32,34 @@ record(mbbo, "$(P)$(R)Range-Sel"){
   field(OUT, "$(P)$(R)ConvCalcGetMode.PROC PP")
 }
 
+########################################################################
+# DCCT Calibration Setting
+#
+# Desc: DCCT calibration signal enable.
+
+# ######################################
+# This db DISABLES THE TEST FUNCTION
+#
+# for use with a device with range fixed
+# by hardware
+# ######################################
+
+# Enable/disable DCCT calibration signal
+record(longout, "$(P)$(R)Test-Cte"){
+  field(ASG, "Reserved")
+  field(DESC, "Test option constant")
+  field(VAL, "0")
+}
+
+record(mbbo, "$(P)$(R)Test-Sel"){
+  field(ASG, "Reserved")
+  field(DESC, "DCCT calibration signal enable")
+  field(ZRST, "OFF")
+#  field(ONST, "ON")
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P)$(R)Test-Cte")
+  field(UNSV, "MAJOR")
+  field(IVOA, "Don't drive outputs")
+  field(OUT, "$(P)$(R)TestCalc.PROC PP")
+}
+

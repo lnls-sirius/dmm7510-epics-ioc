@@ -1555,13 +1555,14 @@ record(mbbi, "$(P)$(R)Range-Sts"){
 #
 # ######################################
 
-# Enable/disable DCCT calibration signal
-record(bo, "$(P)$(R)Test-Sel"){
-  field(DESC, "DCCT calibration signal enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)TestCalc")
-}
+# ######################################
+# Test function enable record
+#
+# IMPLEMENTED ON A SEPARATE .DB!
+#  - dcct_range_variable.db
+#  or
+#  - dcct_range_fixed.db
+# ######################################
 
 # Enable DCCT calibration signal calc
 record(calcout, "$(P)$(R)TestCalc"){
