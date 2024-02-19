@@ -1,2 +1,9 @@
-# Still empty, since a mechanism is necessary for preventing some PVs from processing when some types of functions are being used.
-# The PVs must be listed in the order in which they should be initialized.
+# Autosave Request File - DMM7510
+#
+# 1- A mechanism is necessary to prevent some PVs from processing when some types of functions are being used. Since this is NOT implemented, only PVs that are independent of function type can be added here.
+#
+# 2- The PVs must be listed in the order in which they should be initialized.
+
+# Limit for temperature difference
+# from calibration to generate warning
+$(P)$(R)ACalLim-SP
