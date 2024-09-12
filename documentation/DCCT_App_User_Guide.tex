@@ -56,13 +56,12 @@
 \topskip0pt % perfectly centered
 \vspace*{\fill}
 \textbf{\Huge DCCT EPICS Application User Guide}\\[20pt]
-\textbf{\Huge Version 2.0}\\[20pt]
-\textbf{\Huge August/2020}
+\textbf{\Huge Version 3.0}\\[20pt]
+\textbf{\Huge September/2024}
 \vspace*{\fill}
 
 % footer of title page
 \vfill
-\textbf{Beam Diagnostics Group (DIG)}\\[5pt]
 \textbf{Brazilian Synchrotron Light Laboratory (LNLS)}\\[5pt]
 \textbf{Brazilian Center for Research in Energy and Materials (CNPEM)}
 \end{center}
@@ -89,15 +88,16 @@
 
 %--- Section: Instrument Setup ---
 \section{Instrument Setup}
+\subsection{Common Instrument Setup}
 
-	\paragraph{} The complete DCCT measurement setup consists of a DCCT (Bergoz NPCT) mounted in the beam line; a digital multimeter (Kethley DMM7510) connected to the DCCT output terminals; a STD-EVE timing module, which has a multimeter trigger output connected to its rear panel and one of its front panel outputs connected to the multimeter trigger input; a PC which communicates with the digital multimeter.
+	\paragraph{} The complete DCCT measurement setup consists of a DCCT (Bergoz NPCT) mounted in the beam line; a digital multimeter (Kethley DMM7510) connected to the DCCT output terminals; a STD-EVE timing module, which has a multimeter trigger output connected to its rear panel and one of its front panel outputs connected to the multimeter trigger input; a PC which communicates with the digital multimeter; a connection to a remote module from the interlock system for DCCTs in the Storage Ring.
 
 	% Instrument Setup figure
 	\begin{figure}[!h]
 		\caption{Instrument Setup}
 		\label{fig:dcct-setup}
 		\centering
-		\includegraphics[width=1.0\textwidth]{dcct-setup-image}
+		\includegraphics[width=1.0\textwidth]{dcct_interlock_14c4}
 	\end{figure}
 \FloatBarrier
 
@@ -108,6 +108,21 @@
 	\paragraph{} The STD-EVE timing module can trigger multimeter readings, and monitor the multimeter output trigger line. Upon trigger reception, the STD-EVE generates a post-mortem event that is broadcast to the entire Timing System.
 
 	\paragraph{} The PC runs an EPICS IOC, which includes DMM7510 multimeter and DCCT application-specific PVs. The application reads the multimeter data regularly and configures the multimeter's parameters according to the settings defined in the application PVs.
+
+ 	\paragraph{} The connection to the interlock system consists of 2 signals for the sensor in the sector 14C4 of the Storage Ring. A monitor signal for the interlock to read the current NPCT electronics range configuration, which is defined by the DMM7510 multimeter, and a copy of the NPCT measurement output signal, provided on the front panel of the electronics. For the sensor at the sector 13C4, which is considered by the interlock system as the the most reliable source of current reading, only the DCCT measurement output signal is provided, since the NPCT range is fixed for greater safety. The DCCT in the Booster is not connected to the interlock system. More details are provided in \emph{\nameref{sec:integration-interlock}}.
+
+\subsection{DCCT Integration to Interlock}\label{sec:integration-interlock}
+
+	\paragraph{} The Sirius personal protection system uses the DCCT measurement as one of the variables to determine if there is an electron beam inside of the accelerator tunnel. The presence of beam is used in the interlock logic for personal protection. To minimize the number of points of failure in the measurement process for interlock, the interlock system bypasses the digital multimeter and is connected directly to the NPCT electronics instead. The NPCT electronics has an additional signal output on the front panel (besides the main signal output on the back). This front output is connected to an analog input channel of a remote input/output module which is located in the same rack as the NPCT electronics. The interlock system converts the analog reading from the NPCT output to a current measurement value. For greater safety, the range of the NPCT corresponding to the DCCT in sector 13C4 of the Storage Ring is fixed by hardware by means of a jumper connected to the NPCT electronics configuration input connector. The software can be configured through the device option during deploy to disable range configuration so that the digital multimeter and the NPCT electronics are always consistency regarding the measurement range. This guarantees that the reading displayed in the control room and archived is consistent to the measured value. The interlock system is not impacted by the software readings, since the multimeter is bypassed for the interlock.
+
+	% Instrument Setup figure
+	\begin{figure}[!h]
+		\caption{DCCT integration to the Interlock system for sensor at sector SI-13C4}
+		\label{fig:dcct-special-setup}
+		\centering
+		\includegraphics[width=1.0\textwidth]{dcct_interlock_13c4}
+	\end{figure}
+\FloatBarrier
 
 %--- Section: Measurement Overview ---
 \section{Measurement Overview}
