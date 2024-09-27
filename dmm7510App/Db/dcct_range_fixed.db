@@ -14,16 +14,16 @@
 record(longout, "$(P)$(R)Range-Cte"){
   field(ASG, "Reserved")
   field(DESC, "DCCT range option constant")
-  field(VAL, "2")
+  field(VAL, "1")
 }
 
 record(mbbo, "$(P)$(R)Range-Sel"){
   field(ASG, "Reserved")
   field(DESC, "Fixed DCCT range")
 #  field(ZRST, "20 A")
-#  field(ONST, "2 A")
-  field(TWST, "200 mA")
-  field(VAL, "2")
+  field(ONST, "2 A")
+#  field(TWST, "200 mA")
+  field(VAL, "1")
 #  field(THST, "20 mA")
   field(OMSL, "closed_loop")
   field(DOL, "$(P)$(R)Range-Cte")
